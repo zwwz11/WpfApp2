@@ -1,0 +1,43 @@
+﻿<syncfusion:ChromelessWindow
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+    xmlns:av="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="av" 
+    av:DesignHeight="450" av:DesignWidth="800"
+    xmlns:viewModel="clr-namespace:WpfApp2.Menu.MainWindow.ViewModel" 
+    xmlns:interaction="http://schemas.microsoft.com/xaml/behaviors"
+    x:Class="WpfApp2.Menu.MainWindow.View.MainWindow"
+    Title="Main"
+    WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <viewModel:MainWindowViewModel />
+    </Window.DataContext>
+    <Grid>
+        <syncfusion:SfNavigationDrawer 
+            DisplayMode="Expanded" 
+            ExpandedModeThresholdWidth="700" 
+            ItemsSource="{Binding Menus}">
+            
+            <interaction:Interaction.Triggers>
+                <interaction:EventTrigger EventName="ItemClicked">
+                    <interaction:CallMethodAction TargetObject="{Binding}" MethodName="Test" />
+                </interaction:EventTrigger>
+            </interaction:Interaction.Triggers>
+            
+            <syncfusion:SfNavigationDrawer.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding MenuTitle}" />
+                </DataTemplate>
+            </syncfusion:SfNavigationDrawer.ItemTemplate>
+            <syncfusion:SfNavigationDrawer.ContentView>
+                <Grid>
+                    <!-- 코드 내에서 항목이 들어감 -->
+                    <Frame Padding="3" NavigationUIVisibility="Hidden" />
+                </Grid>
+            </syncfusion:SfNavigationDrawer.ContentView>
+    
+        </syncfusion:SfNavigationDrawer>
+    </Grid>
+</syncfusion:ChromelessWindow>
