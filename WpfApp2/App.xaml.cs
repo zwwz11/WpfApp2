@@ -15,7 +15,7 @@ namespace WpfApp2
     {
         public App()
         {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NHaF5cXmVCf1JpRGFGfV5yd0VHal9QTnVXUiweQnxTdEZiWH9ZcHVWR2NUV0N/Vg==");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NHaF5cWWdCf1FpQ3xbf1xzZFFMYV5bRHFPMyBoS35RdURiWHxecHZWQmJdVkFz");
         }
     }
 }

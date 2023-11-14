@@ -14,15 +14,26 @@
     <Window.DataContext>
         <viewModel:MainWindowViewModel />
     </Window.DataContext>
+    <Window.Resources>
+        <Style x:Key="ItemStyle" TargetType="syncfusion:NavigationItem">
+            <Setter Property="ItemsSource" Value="{Binding SubItems}" />
+        </Style>
+    </Window.Resources>
+    <interaction:Interaction.Triggers>
+        <interaction:EventTrigger EventName="Closed">
+            <interaction:CallMethodAction TargetObject="{Binding}" MethodName="MainWindow_Closed" />
+        </interaction:EventTrigger>
+    </interaction:Interaction.Triggers>
     <Grid>
         <syncfusion:SfNavigationDrawer 
             DisplayMode="Expanded" 
             ExpandedModeThresholdWidth="700" 
-            ItemsSource="{Binding Menus}">
+            ItemContainerStyle="{StaticResource ItemStyle}"
+            ItemsSource="{Binding MenuItems}">
             
             <interaction:Interaction.Triggers>
                 <interaction:EventTrigger EventName="ItemClicked">
-                    <interaction:CallMethodAction TargetObject="{Binding}" MethodName="Test" />
+                    <interaction:CallMethodAction TargetObject="{Binding}" MethodName="SfNavigationDrawer_ItemClicked" />
                 </interaction:EventTrigger>
             </interaction:Interaction.Triggers>
             
@@ -34,7 +45,13 @@
             <syncfusion:SfNavigationDrawer.ContentView>
                 <Grid>
                     <!-- 코드 내에서 항목이 들어감 -->
-                    <Frame Padding="3" NavigationUIVisibility="Hidden" />
+                    <Frame Padding="3" NavigationUIVisibility="Hidden">
+                        <interaction:Interaction.Triggers>
+                            <interaction:EventTrigger EventName="Navigated">
+                                <interaction:CallMethodAction TargetObject="{Binding}" MethodName="Frame_Navigated" />
+                            </interaction:EventTrigger>
+                        </interaction:Interaction.Triggers>
+                    </Frame>
                 </Grid>
             </syncfusion:SfNavigationDrawer.ContentView>
     
